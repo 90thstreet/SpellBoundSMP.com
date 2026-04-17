@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SpellBound SMP</title>
 
-  <!-- Minecraft-style font -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
@@ -33,7 +32,6 @@
       margin: auto;
     }
 
-    /* LOGO (Minecraft style) */
     .logo {
       font-family: 'Press Start 2P', monospace;
       font-size: 1.4rem;
@@ -53,7 +51,6 @@
     }
 
     h1 { font-size: 3rem; margin: 10px 0; }
-
     p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: auto; }
 
     .button {
@@ -66,7 +63,6 @@
       font-weight: 700;
       text-decoration: none;
       transition: 0.2s;
-      cursor: pointer;
     }
 
     .button:hover {
@@ -99,10 +95,8 @@
     }
 
     .card:hover { transform: translateY(-6px); }
-
     .role { opacity: 0.8; margin-top: 5px; font-size: 0.9rem; }
 
-    /* MUSIC PANEL */
     .music-panel{
       position: fixed;
       top: 20px;
@@ -124,24 +118,18 @@
 
 <canvas id="particles"></canvas>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_0b3c1c7b7a.mp3" type="audio/mpeg">
-</audio>
-
 <div class="music-panel">
-  <button class="button" onclick="toggleMusic(); clickSound()">🎵 Music</button>
+  <button class="button" onclick="toggleMusic()">🎵 Music</button>
   <input id="volSlider" type="range" min="0" max="1" step="0.01" value="0.4" />
 </div>
 
 <div class="container">
-
   <div class="logo">SpellBound SMP</div>
 
   <h1>Welcome to SpellBound SMP</h1>
   <p>A magical Minecraft survival experience where adventure, community, and mystery come together.</p>
 
-  <a class="button" href="https://discord.gg/nBRe5zN45H" target="_blank" onclick="clickSound()">Join Our Discord</a>
+  <a class="button" href="https://discord.gg/nBRe5zN45H" target="_blank">Join Our Discord</a>
 
   <div class="section">
     <h2>Promo Video</h2>
@@ -163,102 +151,93 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <script>
-/* PARTICLES */
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-let particles = [];
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+let particles=[];
 
-function resize(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resize);
-resize();
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
+addEventListener("resize",resize);resize();
 
-function init(){
-  for(let i=0;i<130;i++){
-    particles.push({
-      x: Math.random()*canvas.width,
-      y: Math.random()*canvas.height,
-      r: Math.random()*2.5+1,
-      dx:(Math.random()-0.5)*0.6,
-      dy:(Math.random()-0.5)*0.6
-    });
-  }
+for(let i=0;i<130;i++){
+  particles.push({
+    x:Math.random()*innerWidth,
+    y:Math.random()*innerHeight,
+    r:Math.random()*2.5+1,
+    dx:(Math.random()-0.5)*0.6,
+    dy:(Math.random()-0.5)*0.6
+  });
 }
 
 function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.clearRect(0,0,innerWidth,innerHeight);
   ctx.fillStyle="rgba(255,255,255,0.7)";
 
   particles.forEach(p=>{
     ctx.beginPath();
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     ctx.fill();
-
-    p.x+=p.dx;
-    p.y+=p.dy;
-
-    if(p.x<0||p.x>canvas.width)p.dx*=-1;
-    if(p.y<0||p.y>canvas.height)p.dy*=-1;
+    p.x+=p.dx;p.y+=p.dy;
+    if(p.x<0||p.x>innerWidth)p.dx*=-1;
+    if(p.y<0||p.y>innerHeight)p.dy*=-1;
   });
 
   requestAnimationFrame(animate);
 }
-
-init();
 animate();
 
-/* MUSIC */
-const music=document.getElementById("bgMusic");
-const slider=document.getElementById("volSlider");
+/* AUDIO SYSTEM (MUSIC ONLY) */
+let audioCtx;
+let gainNode;
 let playing=false;
 
-music.volume=slider.value;
+function initAudio(){
+  if(audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-function toggleMusic(){
-  if(!playing){
-    music.play();
-    playing=true;
-  } else {
-    music.pause();
-    playing=false;
+  gainNode = audioCtx.createGain();
+  gainNode.gain.value = 0.25;
+  gainNode.connect(audioCtx.destination);
+
+  function ambient(){
+    if(!audioCtx) return;
+
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type="sine";
+    osc.frequency.value = 220 + Math.random()*40;
+
+    gain.gain.value = 0.02;
+
+    osc.connect(gain);
+    gain.connect(gainNode);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 2);
+
+    setTimeout(ambient, 1800);
   }
+
+  ambient();
 }
 
-slider.addEventListener("input",()=>{
-  music.volume=slider.value;
-});
+function toggleMusic(){
+  initAudio();
+  if(audioCtx.state === "suspended") audioCtx.resume();
+
+  playing = !playing;
+  gainNode.gain.value = playing ? 0.25 : 0;
+}
 
 /* SCROLL ANIMATION */
 const sections=document.querySelectorAll(".section");
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ e.target.classList.add("show"); }
-  });
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")});
 },{threshold:0.2});
-sections.forEach(s=>observer.observe(s));
-
-/* UI CLICK SOUND */
-function clickSound(){
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-
-  osc.type = "triangle";
-  osc.frequency.value = 600;
-  gain.gain.value = 0.05;
-
-  osc.connect(gain);
-  gain.connect(ctx.destination);
-
-  osc.start();
-  osc.stop(ctx.currentTime + 0.08);
-}
+sections.forEach(s=>obs.observe(s));
 </script>
 
 </body>
