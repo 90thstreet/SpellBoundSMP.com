@@ -11,10 +11,9 @@
     body {
       margin: 0;
       font-family: 'Montserrat', Arial, sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
       color: white;
       background: radial-gradient(circle at top, #7b2ff7, #00c6ff);
+      overflow-x: hidden;
     }
 
     #particles {
@@ -26,131 +25,149 @@
     .container {
       position: relative;
       z-index: 2;
-      text-align: center;
-      padding: 60px 20px;
-      max-width: 1100px;
+      max-width: 1000px;
       margin: auto;
+      padding: 60px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
     }
 
     .logo {
       font-family: 'Press Start 2P', monospace;
       font-size: 1.4rem;
-      letter-spacing: 3px;
-      display: inline-block;
       padding: 14px 18px;
-      border-radius: 14px;
-      background: rgba(0,0,0,0.35);
-      box-shadow: 0 0 25px rgba(123,47,247,0.6), 0 0 35px rgba(0,198,255,0.5);
-      animation: glow 2.8s ease-in-out infinite;
-      margin-bottom: 10px;
-    }
-
-    @keyframes glow {
-      0%,100% { transform: scale(1); box-shadow: 0 0 18px rgba(123,47,247,0.4), 0 0 22px rgba(0,198,255,0.4);} 
-      50% { transform: scale(1.06); box-shadow: 0 0 35px rgba(123,47,247,0.9), 0 0 50px rgba(0,198,255,0.8);} 
-    }
-
-    h1 { font-size: 3rem; margin: 10px 0; }
-    p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: auto; }
-
-    .button {
       display: inline-block;
-      margin-top: 20px;
-      padding: 12px 26px;
-      border-radius: 12px;
-      background: white;
-      color: #7b2ff7;
-      font-weight: 700;
-      text-decoration: none;
-      transition: 0.2s;
+      background: rgba(0,0,0,0.35);
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(123,47,247,0.6);
+      margin-bottom: 15px;
     }
 
-    .button:hover {
-      transform: scale(1.05);
-      background: #00c6ff;
+    h1 { font-size: 2.5rem; margin-bottom: 10px; }
+
+    .links a {
       color: white;
+      font-weight: 600;
+      text-decoration: none;
+      margin: 0 10px;
+      opacity: 0.9;
     }
 
-    .section { margin-top: 70px; opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
-    .section.show { opacity: 1; transform: translateY(0); }
-
-    .video { margin-top: 25px; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.4);} 
-    iframe { width: 100%; height: 360px; border: none; }
-
-    .staff {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 20px;
+    .links a:hover {
+      opacity: 1;
+      text-decoration: underline;
     }
 
     .card {
       background: rgba(0,0,0,0.35);
-      padding: 20px;
+      padding: 25px;
       border-radius: 16px;
-      width: 220px;
-      backdrop-filter: blur(12px);
-      transition: 0.3s;
-    }
-
-    .card:hover { transform: translateY(-6px); }
-    .role { opacity: 0.8; margin-top: 5px; font-size: 0.9rem; }
-
-    .music-panel{
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 5;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      background: rgba(0,0,0,0.35);
-      padding: 10px;
-      border-radius: 14px;
+      margin-bottom: 20px;
       backdrop-filter: blur(10px);
+      line-height: 1.6;
     }
 
-    input[type="range"]{ width: 120px; }
+    .title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    ul { margin-top: 10px; }
+    li { margin: 5px 0; }
+
+    .video {
+      margin-top: 15px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+
+    iframe {
+      width: 100%;
+      height: 360px;
+      border: none;
+    }
   </style>
 </head>
 <body>
 
 <canvas id="particles"></canvas>
 
-<div class="music-panel">
-  <button class="button" onclick="toggleMusic()">🎵 Music</button>
-  <input id="volSlider" type="range" min="0" max="1" step="0.01" value="0.4" />
-</div>
-
 <div class="container">
-  <div class="logo">SpellBound SMP</div>
 
-  <h1>Welcome to SpellBound SMP</h1>
-  <p>A magical Minecraft survival experience where adventure, community, and mystery come together.</p>
+  <div class="header">
+    <div class="logo">SpellBound SMP</div>
+    <h1>Looking for a truly unique and magical Minecraft SMP?</h1>
+    <p>Step into the world of SpellBound, where spells shape battles, legends are forged, and power is yours to master.</p>
 
-  <a class="button" href="https://discord.gg/nBRe5zN45H" target="_blank">Join Our Discord</a>
+    <div class="links">
+      <a href="https://discord.gg/nBRe5zN45H" target="_blank">Discord</a>
+      <a href="https://www.youtube.com/@SpellBoundSMP" target="_blank">YouTube</a>
+    </div>
+  </div>
 
-  <div class="section">
-    <h2>Promo Video</h2>
+  <div class="card">
+    <div class="title">Promo Video</div>
     <div class="video">
       <iframe src="https://www.youtube.com/embed/9drXl4Mcp9M" allowfullscreen></iframe>
     </div>
   </div>
 
-  <div class="section">
-    <h2>Staff Team</h2>
-    <div class="staff">
-      <div class="card">
-        <h3>Jyoti</h3>
-        <div class="role">Founder</div>
-      </div>
-      <div class="card">
-        <h3>Rvnlo</h3>
-        <div class="role">Founder</div>
-      </div>
-    </div>
+  <div class="card">
+    <div class="title">What is Spellbound SMP?</div>
+    SpellBound is a custom Minecraft SMP built around a powerful magic-based plugin.
+    With unique spell combinations, legendary weapons & armour, and rare abilities, no two players fight the same way.
   </div>
+
+  <div class="card">
+    <div class="title">Our Goal</div>
+    Our goal is to create one of the most welcoming and active SMP communities possible.
+    We’re building more than a server, we’re building a magical world where everyone has a place.
+  </div>
+
+  <div class="card">
+    <div class="title">The Spell System</div>
+
+    <div class="section-title">⚔️ Spell System</div>
+    Players can equip 3 spells at once:
+    <ul>
+      <li>1 Offensive</li>
+      <li>1 Defensive</li>
+      <li>1 Utility</li>
+    </ul>
+
+    <div class="section-title">🌌 Spell Themes</div>
+    <ul>
+      <li>Divinity</li>
+      <li>Arcana</li>
+      <li>Elemental</li>
+    </ul>
+
+    <div class="section-title">📜 18 Unique Spells</div>
+    <ul>
+      <li>Craftable and accessible to all players</li>
+      <li>Each spell has unique abilities and costs</li>
+      <li>Endless combinations and playstyles</li>
+    </ul>
+
+    <div class="section-title">💠 Mana System</div>
+    <ul>
+      <li>Mana bar displayed on-screen</li>
+      <li>Regenerates over time</li>
+      <li>Required to cast spells strategically</li>
+    </ul>
+  </div>
+
 </div>
 
 <script>
@@ -161,13 +178,13 @@ let particles=[];
 function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
 addEventListener("resize",resize);resize();
 
-for(let i=0;i<130;i++){
+for(let i=0;i<120;i++){
   particles.push({
     x:Math.random()*innerWidth,
     y:Math.random()*innerHeight,
-    r:Math.random()*2.5+1,
-    dx:(Math.random()-0.5)*0.6,
-    dy:(Math.random()-0.5)*0.6
+    r:Math.random()*2+1,
+    dx:(Math.random()-0.5)*0.5,
+    dy:(Math.random()-0.5)*0.5
   });
 }
 
@@ -179,7 +196,10 @@ function animate(){
     ctx.beginPath();
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     ctx.fill();
-    p.x+=p.dx;p.y+=p.dy;
+
+    p.x+=p.dx;
+    p.y+=p.dy;
+
     if(p.x<0||p.x>innerWidth)p.dx*=-1;
     if(p.y<0||p.y>innerHeight)p.dy*=-1;
   });
@@ -187,57 +207,6 @@ function animate(){
   requestAnimationFrame(animate);
 }
 animate();
-
-/* AUDIO SYSTEM (MUSIC ONLY) */
-let audioCtx;
-let gainNode;
-let playing=false;
-
-function initAudio(){
-  if(audioCtx) return;
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-  gainNode = audioCtx.createGain();
-  gainNode.gain.value = 0.25;
-  gainNode.connect(audioCtx.destination);
-
-  function ambient(){
-    if(!audioCtx) return;
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type="sine";
-    osc.frequency.value = 220 + Math.random()*40;
-
-    gain.gain.value = 0.02;
-
-    osc.connect(gain);
-    gain.connect(gainNode);
-
-    osc.start();
-    osc.stop(audioCtx.currentTime + 2);
-
-    setTimeout(ambient, 1800);
-  }
-
-  ambient();
-}
-
-function toggleMusic(){
-  initAudio();
-  if(audioCtx.state === "suspended") audioCtx.resume();
-
-  playing = !playing;
-  gainNode.gain.value = playing ? 0.25 : 0;
-}
-
-/* SCROLL ANIMATION */
-const sections=document.querySelectorAll(".section");
-const obs=new IntersectionObserver(e=>{
-  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")});
-},{threshold:0.2});
-sections.forEach(s=>obs.observe(s));
 </script>
 
 </body>
