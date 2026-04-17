@@ -50,15 +50,39 @@
 
     p{opacity:0.95;line-height:1.6;}
 
-    .links a{
-      color:white;
-      margin:0 10px;
-      text-decoration:none;
-      font-weight:600;
-      opacity:0.9;
+    .links{
+      margin-top:15px;
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
     }
 
-    .links a:hover{opacity:1;text-decoration:underline;}
+    .link-card{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 18px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      color:white;
+      transition:0.2s;
+      box-shadow:0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .discord{
+      background:linear-gradient(135deg,#5865F2,#404EED);
+    }
+
+    .youtube{
+      background:linear-gradient(135deg,#FF0033,#CC0000);
+    }
+
+    .link-card:hover{
+      transform:scale(1.05);
+      filter:brightness(1.1);
+    }
 
     .card{
       background:rgba(0,0,0,0.35);
@@ -83,12 +107,6 @@
 
     ul{margin:10px 0 0 20px;}
     li{margin:6px 0;}
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:15px;
-    }
 
     .badge{
       display:inline-block;
@@ -119,8 +137,8 @@
     <p>Step into the world of SpellBound, where spells shape battles, legends are forged, and power is yours to master.</p>
 
     <div class="links">
-      <a href="https://discord.gg/nBRe5zN45H" target="_blank">Discord</a>
-      <a href="https://www.youtube.com/@SpellBoundSMP" target="_blank">YouTube</a>
+      <a class="link-card discord" href="https://discord.gg/nBRe5zN45H" target="_blank">💬 Join Discord</a>
+      <a class="link-card youtube" href="https://www.youtube.com/@SpellBoundSMP" target="_blank">▶ Watch YouTube</a>
     </div>
   </div>
 
@@ -128,47 +146,42 @@
     <div class="title">What is Spellbound SMP?</div>
     SpellBound is a custom Minecraft SMP built around a powerful magic-based plugin.
     With unique spell combinations, legendary weapons & armour, and rare one-of-a-kind abilities,
-    no two players fight the same way. This isn’t just a server, it’s a growing community driven by magic.
+    no two players fight the same way.
   </div>
 
   <div class="card">
     <div class="title">Our Goal</div>
-    SpellBound isn’t just about power, it’s about people.
     Our goal is to create one of the most welcoming and active SMP communities possible.
-    We believe every player matters and we are building a magical world where everyone has a place.
   </div>
 
   <div class="card">
     <div class="title">The Spell System</div>
 
     <div class="section-title">⚔️ Spell System</div>
-    Players can equip 3 spells at once:
     <ul>
       <li>1 Offensive</li>
       <li>1 Defensive</li>
       <li>1 Utility</li>
     </ul>
 
-    <div class="section-title">🌌 Spell Themes</div>
+    <div class="section-title">🌌 Themes</div>
     <ul>
       <li>Divinity</li>
       <li>Arcana</li>
       <li>Elemental</li>
     </ul>
-    Using 3 spells from the same theme grants powerful bonus effects.
 
-    <div class="section-title">📜 18 Unique Spells</div>
+    <div class="section-title">📜 Spells</div>
     <ul>
-      <li>Craftable and accessible to all players</li>
-      <li>Each spell has its own ability, cost, and theme</li>
-      <li>Endless combinations and playstyles</li>
+      <li>18 unique spells</li>
+      <li>Custom abilities & costs</li>
+      <li>Endless builds</li>
     </ul>
 
     <div class="section-title">💠 Mana System</div>
     <ul>
-      <li>Mana bar displayed on-screen</li>
-      <li>Regenerates over time</li>
-      <li>Required to cast spells strategically</li>
+      <li>Regenerating mana bar</li>
+      <li>Strategic casting system</li>
     </ul>
   </div>
 
@@ -176,43 +189,12 @@
     <div class="title">Community Overview</div>
     <div class="badge">192 Online</div>
     <div class="badge">895 Members</div>
-    <div class="badge">Est. Dec 2025</div>
-    <div class="badge">Season 2 Starting Soon</div>
+    <div class="badge">Season 2 Soon</div>
   </div>
 
   <div class="card">
     <div class="title">Promo Video</div>
     <iframe src="https://www.youtube.com/embed/9drXl4Mcp9M" allowfullscreen></iframe>
-  </div>
-
-  <div class="card">
-    <div class="title">YouTube Channel</div>
-    Welcome to the official SpellBound SMP channel. SpellBound is a custom magic Minecraft SMP where players craft spells, master themes, and fight for legendary items using strategic PvP systems.
-  </div>
-
-  <div class="card">
-    <div class="title">Applications</div>
-    <b>Status:</b> Open
-    <ul>
-      <li>30–120 second video applications preferred</li>
-      <li>Creative SMP clips, intros, or streamer apps accepted</li>
-      <li>Content creators highly encouraged</li>
-    </ul>
-    Head to Discord to apply.
-  </div>
-
-  <div class="card">
-    <div class="title">Staff & Support</div>
-    <ul>
-      <li>24/7 Discord ticket support</li>
-      <li>Staff applications open</li>
-      <li>Recruiting reviewers, managers, trainees</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <div class="title">Join the Community</div>
-    Join our rapidly growing Discord server with 850+ members and secure your spot before we hit 1,000!
   </div>
 
 </div>
@@ -244,6 +226,7 @@ function animate(){
     ctx.beginPath();
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     ctx.fill();
+
     p.x+=p.dx;
     p.y+=p.dy;
 
