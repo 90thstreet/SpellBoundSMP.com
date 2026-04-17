@@ -8,94 +8,102 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Montserrat', Arial, sans-serif;
-      color: white;
-      background: radial-gradient(circle at top, #7b2ff7, #00c6ff);
-      overflow-x: hidden;
+    body{
+      margin:0;
+      font-family:'Montserrat',sans-serif;
+      color:white;
+      background:radial-gradient(circle at top,#7b2ff7,#00c6ff);
+      overflow-x:hidden;
     }
 
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
+    #particles{
+      position:fixed;
+      inset:0;
+      z-index:0;
     }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      max-width: 1000px;
-      margin: auto;
-      padding: 60px 20px;
+    .container{
+      position:relative;
+      z-index:2;
+      max-width:1050px;
+      margin:auto;
+      padding:60px 20px;
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
+    .hero{
+      text-align:center;
+      margin-bottom:40px;
     }
 
-    .logo {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 1.4rem;
-      padding: 14px 18px;
-      display: inline-block;
-      background: rgba(0,0,0,0.35);
-      border-radius: 14px;
-      box-shadow: 0 0 25px rgba(123,47,247,0.6);
-      margin-bottom: 15px;
+    .logo{
+      font-family:'Press Start 2P',monospace;
+      font-size:1.3rem;
+      padding:14px 18px;
+      display:inline-block;
+      background:rgba(0,0,0,0.35);
+      border-radius:14px;
+      box-shadow:0 0 25px rgba(123,47,247,0.6);
+      margin-bottom:15px;
     }
 
-    h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    h1{font-size:2.4rem;margin:10px 0;}
 
-    .links a {
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-      margin: 0 10px;
-      opacity: 0.9;
+    p{opacity:0.95;line-height:1.6;}
+
+    .links a{
+      color:white;
+      margin:0 10px;
+      text-decoration:none;
+      font-weight:600;
+      opacity:0.9;
     }
 
-    .links a:hover {
-      opacity: 1;
-      text-decoration: underline;
+    .links a:hover{opacity:1;text-decoration:underline;}
+
+    .card{
+      background:rgba(0,0,0,0.35);
+      padding:22px;
+      border-radius:16px;
+      margin-bottom:18px;
+      backdrop-filter:blur(10px);
+      line-height:1.6;
     }
 
-    .card {
-      background: rgba(0,0,0,0.35);
-      padding: 25px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      backdrop-filter: blur(10px);
-      line-height: 1.6;
+    .title{
+      font-size:1.3rem;
+      font-weight:700;
+      margin-bottom:8px;
     }
 
-    .title {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      font-weight: 700;
+    .section-title{
+      font-size:1.5rem;
+      margin:18px 0 8px;
+      font-weight:700;
     }
 
-    .section-title {
-      font-size: 1.6rem;
-      margin-top: 25px;
-      margin-bottom: 10px;
+    ul{margin:10px 0 0 20px;}
+    li{margin:6px 0;}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:15px;
     }
 
-    ul { margin-top: 10px; }
-    li { margin: 5px 0; }
-
-    .video {
-      margin-top: 15px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      background:rgba(255,255,255,0.15);
+      border-radius:8px;
+      margin:4px 4px 0 0;
+      font-size:0.85rem;
     }
 
-    iframe {
-      width: 100%;
-      height: 360px;
-      border: none;
+    iframe{
+      width:100%;
+      height:360px;
+      border:none;
+      border-radius:14px;
     }
   </style>
 </head>
@@ -105,7 +113,7 @@
 
 <div class="container">
 
-  <div class="header">
+  <div class="hero">
     <div class="logo">SpellBound SMP</div>
     <h1>Looking for a truly unique and magical Minecraft SMP?</h1>
     <p>Step into the world of SpellBound, where spells shape battles, legends are forged, and power is yours to master.</p>
@@ -117,22 +125,17 @@
   </div>
 
   <div class="card">
-    <div class="title">Promo Video</div>
-    <div class="video">
-      <iframe src="https://www.youtube.com/embed/9drXl4Mcp9M" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <div class="card">
     <div class="title">What is Spellbound SMP?</div>
     SpellBound is a custom Minecraft SMP built around a powerful magic-based plugin.
-    With unique spell combinations, legendary weapons & armour, and rare abilities, no two players fight the same way.
+    With unique spell combinations, legendary weapons & armour, and rare one-of-a-kind abilities,
+    no two players fight the same way. This isn’t just a server, it’s a growing community driven by magic.
   </div>
 
   <div class="card">
     <div class="title">Our Goal</div>
+    SpellBound isn’t just about power, it’s about people.
     Our goal is to create one of the most welcoming and active SMP communities possible.
-    We’re building more than a server, we’re building a magical world where everyone has a place.
+    We believe every player matters and we are building a magical world where everyone has a place.
   </div>
 
   <div class="card">
@@ -152,11 +155,12 @@
       <li>Arcana</li>
       <li>Elemental</li>
     </ul>
+    Using 3 spells from the same theme grants powerful bonus effects.
 
     <div class="section-title">📜 18 Unique Spells</div>
     <ul>
       <li>Craftable and accessible to all players</li>
-      <li>Each spell has unique abilities and costs</li>
+      <li>Each spell has its own ability, cost, and theme</li>
       <li>Endless combinations and playstyles</li>
     </ul>
 
@@ -168,6 +172,49 @@
     </ul>
   </div>
 
+  <div class="card">
+    <div class="title">Community Overview</div>
+    <div class="badge">192 Online</div>
+    <div class="badge">895 Members</div>
+    <div class="badge">Est. Dec 2025</div>
+    <div class="badge">Season 2 Starting Soon</div>
+  </div>
+
+  <div class="card">
+    <div class="title">Promo Video</div>
+    <iframe src="https://www.youtube.com/embed/9drXl4Mcp9M" allowfullscreen></iframe>
+  </div>
+
+  <div class="card">
+    <div class="title">YouTube Channel</div>
+    Welcome to the official SpellBound SMP channel. SpellBound is a custom magic Minecraft SMP where players craft spells, master themes, and fight for legendary items using strategic PvP systems.
+  </div>
+
+  <div class="card">
+    <div class="title">Applications</div>
+    <b>Status:</b> Open
+    <ul>
+      <li>30–120 second video applications preferred</li>
+      <li>Creative SMP clips, intros, or streamer apps accepted</li>
+      <li>Content creators highly encouraged</li>
+    </ul>
+    Head to Discord to apply.
+  </div>
+
+  <div class="card">
+    <div class="title">Staff & Support</div>
+    <ul>
+      <li>24/7 Discord ticket support</li>
+      <li>Staff applications open</li>
+      <li>Recruiting reviewers, managers, trainees</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="title">Join the Community</div>
+    Join our rapidly growing Discord server with 850+ members and secure your spot before we hit 1,000!
+  </div>
+
 </div>
 
 <script>
@@ -176,7 +223,8 @@ const ctx=canvas.getContext("2d");
 let particles=[];
 
 function resize(){canvas.width=innerWidth;canvas.height=innerHeight;}
-addEventListener("resize",resize);resize();
+window.addEventListener("resize",resize);
+resize();
 
 for(let i=0;i<120;i++){
   particles.push({
@@ -196,7 +244,6 @@ function animate(){
     ctx.beginPath();
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     ctx.fill();
-
     p.x+=p.dx;
     p.y+=p.dy;
 
