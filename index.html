@@ -1,310 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>90thstreet | Minecraft Developer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpellBoundSMP</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: white;
+      background: linear-gradient(135deg, #7b2ff7, #00c6ff);
+    }
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: #020617;
-    color: white;
-    overflow-x: hidden;
-}
+    /* Particles canvas */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
 
-#loader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
+    .container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 60px 20px;
+    }
 
-.spinner {
-    width: 60px;
-    height: 60px;
-    border: 4px solid #38bdf8;
-    border-top: 4px solid transparent;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
+    /* Logo glow */
+    .logo {
+      font-size: 2.2rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.25);
+      box-shadow: 0 0 15px rgba(0,198,255,0.6), 0 0 25px rgba(123,47,247,0.6);
+      animation: glow 2.5s ease-in-out infinite;
+    }
 
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(0,198,255,0.4), 0 0 20px rgba(123,47,247,0.4);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 25px rgba(0,198,255,0.9), 0 0 40px rgba(123,47,247,0.9);
+        transform: scale(1.05);
+      }
+    }
 
-#particles {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
+    h1 {
+      font-size: 3.2rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
 
-.content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-}
+    p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
 
-header {
-    padding: 120px 20px 40px;
-}
+    a.button {
+      display: inline-block;
+      padding: 12px 25px;
+      background: white;
+      color: #7b2ff7;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
 
-h1 {
-    font-size: 4em;
-    text-shadow: 0 0 25px #38bdf8;
-}
+    a.button:hover {
+      background: #00c6ff;
+      color: white;
+      transform: scale(1.05);
+    }
 
-.subtitle {
-    max-width: 700px;
-    margin: auto;
-    opacity: 0.85;
-}
+    .section {
+      margin-top: 60px;
+    }
 
-.btn {
-    display: inline-block;
-    padding: 12px 20px;
-    margin-top: 15px;
-    background: #38bdf8;
-    border-radius: 10px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
+    .staff {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
 
-.section {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 20px;
-    text-align: left;
-}
+    .card {
+      background: rgba(0,0,0,0.35);
+      padding: 20px;
+      border-radius: 16px;
+      width: 200px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap: 20px;
-}
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-.card {
-    padding: 20px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.05);
-}
-
-.tag {
-    display: inline-block;
-    padding: 8px 12px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 8px;
-    margin: 5px;
-}
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 10px;
-}
-
-.gallery img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.gallery img:hover {
-    transform: scale(1.03);
-}
-
-#musicControl {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-    background: rgba(0,0,0,0.6);
-    padding: 10px;
-    border-radius: 10px;
-}
-
-#volumeSlider {
-    width: 100px;
-}
-</style>
+    .role {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-top: 5px;
+    }
+  </style>
 </head>
-
 <body>
-
-<div id="loader">
-<div class="spinner"></div>
-</div>
 
 <canvas id="particles"></canvas>
 
-<audio id="bgMusic" loop>
-  <source src="https://files.catbox.moe/06zluu.mp3" type="audio/mpeg">
-</audio>
+<div class="container">
 
-<div id="musicControl">
-<button onclick="toggleMusic()">🎵</button>
-<input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.5">
-</div>
+  <div class="logo">✦ SpellBoundSMP ✦</div>
 
-<div class="content">
+  <h1>SpellBoundSMP</h1>
+  <p>Join the magical world of SpellBoundSMP. Adventures, survival, and community await.</p>
+  <a class="button" href="https://discord.gg/nBRe5zN45H" target="_blank">Join Our Discord</a>
 
-<header>
-<h1>90thstreet</h1>
-<p class="subtitle">
-Minecraft plugin developer creating custom SMP systems, events, and server improvements.
-</p>
-
-<a class="btn" href="https://discord.gg/4WTKqVrPkV" target="_blank">
-Contact Me on Discord
-</a>
-</header>
-
-<!-- SERVICES -->
-<div class="section">
-<h2>Services</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>SMP Plugins</h3>
-<p>Custom SMP systems including abilities, progression, economy, and gameplay mechanics.</p>
-<p><b>£25 – £120+</b></p>
-</div>
-
-<div class="card">
-<h3>Event Plugins</h3>
-<p>Custom PvP events, minigames, and tournaments.</p>
-<p><b>£30 – £150+</b></p>
-</div>
-
-<div class="card">
-<h3>Server Optimisation</h3>
-<p>Improve performance, reduce lag, and boost TPS.</p>
-<p><b>£15 – £80+</b></p>
-</div>
-
-</div>
-</div>
-
-<!-- PRICING NOTE -->
-<div class="section">
-<div class="card">
-<h3>Pricing Notice</h3>
-<p>Prices are estimates and may change depending on the project.</p>
-<p>Contact me for exact pricing.</p>
-</div>
-</div>
-
-<!-- PAYMENTS -->
-<div class="section">
-<h2>Payments</h2>
-<div class="cards">
-
-<div class="card">
-<h3>PayPal</h3>
-<p>Accepted for all orders.</p>
-</div>
-
-<div class="card">
-<h3>Ko-fi</h3>
-<p>Fast payment option.</p>
-<a class="btn" href="https://ko-fi.com/">Open Ko-fi</a>
-</div>
-
-</div>
-</div>
-
-<!-- SERVERS -->
-<div class="section">
-<h2>Servers I've Worked On</h2>
-<div>
-<span class="tag">Toxic SMP</span>
-<span class="tag">BirdFFA</span>
-<span class="tag">CorruptFFA</span>
-<span class="tag">SpellBound SMP</span>
-<span class="tag">VaspectSMP</span>
-</div>
-</div>
-
-<!-- REVIEWS -->
-<div class="section">
-<h2>Reviews</h2>
-<div class="card">
-<p>Join my Discord for feedback and past work reviews.</p>
-<a class="btn" href="https://discord.gg/4WTKqVrPkV">View Reviews</a>
-</div>
-</div>
-
-<!-- GALLERY -->
-<div class="section">
-<h2>Work</h2>
-<div class="gallery">
-<img src="https://i.ibb.co/nqK2Gcnp/2026-04-17-00-48-05-5.png">
-<img src="https://i.ibb.co/bj1V8HfS/2026-04-17-00-49-08-2.png">
-<img src="https://i.ibb.co/pjR2DhvX/2026-04-17-00-51-48-3.png">
-<img src="https://i.ibb.co/XrLCs6QJ/2026-04-17-00-53-04.png">
-<img src="https://i.ibb.co/Ngmh9MBg/2026-04-17-00-53-06.png">
-<img src="https://i.ibb.co/G42hkJBN/2026-04-17-00-53-03.png">
-<img src="https://i.ibb.co/RpKcBLjM/2026-04-17-00-52-53.png">
-</div>
-</div>
-
+  <div class="section">
+    <h2>Staff Team</h2>
+    <div class="staff">
+      <div class="card">
+        <h3>Jyoti</h3>
+        <div class="role">Founder</div>
+      </div>
+      <div class="card">
+        <h3>Rvnlo</h3>
+        <div class="role">Founder</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-window.addEventListener("load", () => {
-    document.getElementById("loader").style.display = "none";
-});
-
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
 let particles = [];
-for(let i=0;i<50;i++){
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+function createParticles(count) {
+  for (let i = 0; i < count; i++) {
     particles.push({
-        x: Math.random()*canvas.width,
-        y: Math.random()*canvas.height,
-        r: Math.random()*2
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 3 + 1,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5
     });
+  }
 }
 
-function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle="#38bdf8";
-        ctx.fill();
-    });
-    requestAnimationFrame(draw);
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255,255,255,0.7)";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+  });
+
+  requestAnimationFrame(draw);
 }
+
+createParticles(120);
 draw();
-
-let music = document.getElementById("bgMusic");
-let slider = document.getElementById("volumeSlider");
-
-music.volume = 0.5;
-
-slider.oninput = () => music.volume = slider.value;
-
-function toggleMusic(){
-    music.paused ? music.play() : music.pause();
-}
 </script>
 
 </body>
