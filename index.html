@@ -12,7 +12,8 @@
       margin:0;
       font-family:'Montserrat',sans-serif;
       color:white;
-      background:radial-gradient(circle at top,#7b2ff7,#00c6ff);
+      /* DARKER BACKGROUND */
+      background: radial-gradient(circle at top,#120a2a,#060812 70%);
       overflow-x:hidden;
     }
 
@@ -20,6 +21,7 @@
       position:fixed;
       inset:0;
       z-index:0;
+      opacity:0.35;
     }
 
     .container{
@@ -40,14 +42,14 @@
       font-size:1.3rem;
       padding:14px 18px;
       display:inline-block;
-      background:rgba(0,0,0,0.35);
+      background:rgba(0,0,0,0.55);
       border-radius:14px;
       box-shadow:0 0 25px rgba(123,47,247,0.6);
       margin-bottom:15px;
     }
 
     h1{font-size:2.4rem;margin:10px 0;}
-    p{opacity:0.95;line-height:1.6;}
+    p{opacity:0.9;line-height:1.6;}
 
     .links{
       margin-top:15px;
@@ -66,25 +68,35 @@
       text-decoration:none;
       font-weight:700;
       color:white;
-      transition:0.2s;
-      box-shadow:0 0 20px rgba(0,0,0,0.3);
+      transition:0.25s;
+      box-shadow:0 0 20px rgba(0,0,0,0.4);
     }
 
     .discord{background:linear-gradient(135deg,#5865F2,#404EED);}
     .youtube{background:linear-gradient(135deg,#FF0033,#CC0000);}
 
     .link-card:hover{
-      transform:scale(1.05);
-      filter:brightness(1.1);
+      transform:scale(1.06);
+      filter:brightness(1.15);
+      box-shadow:0 0 25px rgba(123,47,247,0.6);
     }
 
+    /* DARK GLASS BOXES + PURPLE HOVER GLOW */
     .card{
-      background:rgba(0,0,0,0.35);
+      background:rgba(10,10,20,0.55);
       padding:22px;
       border-radius:16px;
       margin-bottom:18px;
-      backdrop-filter:blur(10px);
+      backdrop-filter:blur(12px);
       line-height:1.6;
+      border:1px solid rgba(255,255,255,0.06);
+      transition:0.25s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 25px rgba(155,60,255,0.6), 0 0 60px rgba(155,60,255,0.25);
+      border:1px solid rgba(155,60,255,0.4);
     }
 
     .title{
@@ -116,7 +128,6 @@
 
 <div class="container">
 
-  <!-- HERO -->
   <div class="hero">
     <div class="logo">SpellBound SMP</div>
     <h1>Looking for a truly unique and magical Minecraft SMP?</h1>
@@ -128,7 +139,6 @@
     </div>
   </div>
 
-  <!-- WHAT IS -->
   <div class="card">
     <div class="title">What is Spellbound SMP?</div>
     SpellBound is a custom Minecraft SMP built around a powerful magic-based plugin.
@@ -136,14 +146,12 @@
     no two players fight the same way.
   </div>
 
-  <!-- GOAL -->
   <div class="card">
     <div class="title">Our Goal</div>
     Our goal is to create one of the most welcoming and active SMP communities possible.
     We believe every player matters and we are building a magical world where everyone has a place.
   </div>
 
-  <!-- SPELL SYSTEM -->
   <div class="card">
     <div class="title">The Spell System</div>
 
@@ -170,13 +178,11 @@
 
     <div class="section-title">💠 Mana System</div>
     <ul>
-      <li>Mana bar displayed on-screen</li>
-      <li>Regenerates over time</li>
-      <li>Required to cast spells strategically</li>
+      <li>Regenerating mana bar</li>
+      <li>Strategic casting system</li>
     </ul>
   </div>
 
-  <!-- APPLICATIONS -->
   <div class="card">
     <div class="title">Applications</div>
     <b>Status:</b> Open
@@ -189,7 +195,6 @@
     Head to Discord to apply.
   </div>
 
-  <!-- STAFF -->
   <div class="card">
     <div class="title">Staff & Support</div>
     <ul>
@@ -199,13 +204,11 @@
     </ul>
   </div>
 
-  <!-- JOIN -->
   <div class="card">
     <div class="title">Join the Community</div>
     Join our growing Discord community and become part of SpellBound today.
   </div>
 
-  <!-- PROMO VIDEO -->
   <div class="card">
     <div class="title">Promo Video</div>
     <iframe src="https://www.youtube.com/embed/9drXl4Mcp9M" allowfullscreen></iframe>
@@ -234,7 +237,7 @@ for(let i=0;i<120;i++){
 
 function animate(){
   ctx.clearRect(0,0,innerWidth,innerHeight);
-  ctx.fillStyle="rgba(255,255,255,0.7)";
+  ctx.fillStyle="rgba(255,255,255,0.6)";
 
   particles.forEach(p=>{
     ctx.beginPath();
