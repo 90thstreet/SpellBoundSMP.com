@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SpellBound SMP</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- Minecraft-style font -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -32,14 +33,15 @@
       margin: auto;
     }
 
+    /* LOGO (Minecraft style) */
     .logo {
-      font-size: 2.4rem;
-      font-weight: 800;
-      letter-spacing: 6px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.4rem;
+      letter-spacing: 3px;
       display: inline-block;
-      padding: 12px 26px;
-      border-radius: 16px;
-      background: rgba(0,0,0,0.25);
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: rgba(0,0,0,0.35);
       box-shadow: 0 0 25px rgba(123,47,247,0.6), 0 0 35px rgba(0,198,255,0.5);
       animation: glow 2.8s ease-in-out infinite;
       margin-bottom: 10px;
@@ -63,7 +65,8 @@
       color: #7b2ff7;
       font-weight: 700;
       text-decoration: none;
-      transition: 0.3s;
+      transition: 0.2s;
+      cursor: pointer;
     }
 
     .button:hover {
@@ -72,7 +75,8 @@
       color: white;
     }
 
-    .section { margin-top: 70px; }
+    .section { margin-top: 70px; opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
+    .section.show { opacity: 1; transform: translateY(0); }
 
     .video { margin-top: 25px; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.4);} 
     iframe { width: 100%; height: 360px; border: none; }
@@ -98,27 +102,22 @@
 
     .role { opacity: 0.8; margin-top: 5px; font-size: 0.9rem; }
 
-    /* MUSIC BUTTON */
-    .music-btn {
+    /* MUSIC PANEL */
+    .music-panel{
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 5;
-      padding: 10px 16px;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      background: rgba(0,0,0,0.4);
-      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(0,0,0,0.35);
+      padding: 10px;
+      border-radius: 14px;
       backdrop-filter: blur(10px);
-      transition: 0.3s;
     }
 
-    .music-btn:hover {
-      transform: scale(1.05);
-      background: rgba(0,0,0,0.6);
-    }
+    input[type="range"]{ width: 120px; }
   </style>
 </head>
 <body>
@@ -127,20 +126,22 @@
 
 <!-- MUSIC -->
 <audio id="bgMusic" loop>
-  <!-- Replace with your own ambience file if needed -->
-  <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_0b3c1c7b7a.mp3?filename=ambient-minecraft-style-ambient-121936.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_0b3c1c7b7a.mp3" type="audio/mpeg">
 </audio>
 
-<button class="music-btn" onclick="toggleMusic()">🎵 Music: OFF</button>
+<div class="music-panel">
+  <button class="button" onclick="toggleMusic(); clickSound()">🎵 Music</button>
+  <input id="volSlider" type="range" min="0" max="1" step="0.01" value="0.4" />
+</div>
 
 <div class="container">
 
-  <div class="logo">✦ SpellBound SMP ✦</div>
+  <div class="logo">SpellBound SMP</div>
 
   <h1>Welcome to SpellBound SMP</h1>
   <p>A magical Minecraft survival experience where adventure, community, and mystery come together.</p>
 
-  <a class="button" href="https://discord.gg/nBRe5zN45H" target="_blank">Join Our Discord</a>
+  <a class="button" href="https://discord.gg/nBRe5zN45H" target="_blank" onclick="clickSound()">Join Our Discord</a>
 
   <div class="section">
     <h2>Promo Video</h2>
@@ -166,9 +167,9 @@
 </div>
 
 <script>
+/* PARTICLES */
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
-
 let particles = [];
 
 function resize(){
@@ -212,20 +213,51 @@ function animate(){
 init();
 animate();
 
-// MUSIC TOGGLE
-let musicOn = false;
-const music = document.getElementById("bgMusic");
+/* MUSIC */
+const music=document.getElementById("bgMusic");
+const slider=document.getElementById("volSlider");
+let playing=false;
+
+music.volume=slider.value;
 
 function toggleMusic(){
-  if(!musicOn){
+  if(!playing){
     music.play();
-    musicOn = true;
-    document.querySelector('.music-btn').innerText = "🎵 Music: ON";
+    playing=true;
   } else {
     music.pause();
-    musicOn = false;
-    document.querySelector('.music-btn').innerText = "🎵 Music: OFF";
+    playing=false;
   }
+}
+
+slider.addEventListener("input",()=>{
+  music.volume=slider.value;
+});
+
+/* SCROLL ANIMATION */
+const sections=document.querySelectorAll(".section");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add("show"); }
+  });
+},{threshold:0.2});
+sections.forEach(s=>observer.observe(s));
+
+/* UI CLICK SOUND */
+function clickSound(){
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+
+  osc.type = "triangle";
+  osc.frequency.value = 600;
+  gain.gain.value = 0.05;
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(ctx.currentTime + 0.08);
 }
 </script>
 
