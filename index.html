@@ -47,7 +47,6 @@
     }
 
     h1{font-size:2.4rem;margin:10px 0;}
-
     p{opacity:0.95;line-height:1.6;}
 
     .links{
@@ -71,13 +70,8 @@
       box-shadow:0 0 20px rgba(0,0,0,0.3);
     }
 
-    .discord{
-      background:linear-gradient(135deg,#5865F2,#404EED);
-    }
-
-    .youtube{
-      background:linear-gradient(135deg,#FF0033,#CC0000);
-    }
+    .discord{background:linear-gradient(135deg,#5865F2,#404EED);}
+    .youtube{background:linear-gradient(135deg,#FF0033,#CC0000);}
 
     .link-card:hover{
       transform:scale(1.05);
@@ -108,15 +102,6 @@
     ul{margin:10px 0 0 20px;}
     li{margin:6px 0;}
 
-    .badge{
-      display:inline-block;
-      padding:6px 10px;
-      background:rgba(255,255,255,0.15);
-      border-radius:8px;
-      margin:4px 4px 0 0;
-      font-size:0.85rem;
-    }
-
     iframe{
       width:100%;
       height:360px;
@@ -131,6 +116,7 @@
 
 <div class="container">
 
+  <!-- HERO -->
   <div class="hero">
     <div class="logo">SpellBound SMP</div>
     <h1>Looking for a truly unique and magical Minecraft SMP?</h1>
@@ -142,6 +128,7 @@
     </div>
   </div>
 
+  <!-- WHAT IS -->
   <div class="card">
     <div class="title">What is Spellbound SMP?</div>
     SpellBound is a custom Minecraft SMP built around a powerful magic-based plugin.
@@ -149,42 +136,76 @@
     no two players fight the same way.
   </div>
 
+  <!-- GOAL -->
   <div class="card">
     <div class="title">Our Goal</div>
     Our goal is to create one of the most welcoming and active SMP communities possible.
+    We believe every player matters and we are building a magical world where everyone has a place.
   </div>
 
+  <!-- SPELL SYSTEM -->
   <div class="card">
     <div class="title">The Spell System</div>
 
     <div class="section-title">⚔️ Spell System</div>
     <ul>
-      <li>1 Offensive</li>
-      <li>1 Defensive</li>
-      <li>1 Utility</li>
+      <li>1 Offensive spell</li>
+      <li>1 Defensive spell</li>
+      <li>1 Utility spell</li>
     </ul>
 
-    <div class="section-title">🌌 Themes</div>
+    <div class="section-title">🌌 Spell Themes</div>
     <ul>
       <li>Divinity</li>
       <li>Arcana</li>
       <li>Elemental</li>
     </ul>
 
-    <div class="section-title">📜 Spells</div>
+    <div class="section-title">📜 18 Unique Spells</div>
     <ul>
-      <li>18 unique spells</li>
-      <li>Custom abilities & costs</li>
-      <li>Endless builds</li>
+      <li>Craftable and accessible to all players</li>
+      <li>Each spell has its own ability, cost, and theme</li>
+      <li>Endless combinations and playstyles</li>
     </ul>
 
     <div class="section-title">💠 Mana System</div>
     <ul>
-      <li>Regenerating mana bar</li>
-      <li>Strategic casting system</li>
+      <li>Mana bar displayed on-screen</li>
+      <li>Regenerates over time</li>
+      <li>Required to cast spells strategically</li>
     </ul>
   </div>
 
+  <!-- APPLICATIONS -->
+  <div class="card">
+    <div class="title">Applications</div>
+    <b>Status:</b> Open
+    <ul>
+      <li>Create a 30–120 second video application showcasing your personality</li>
+      <li>SMP clips, intros, or streamer applications accepted</li>
+      <li>Written applications allowed but not recommended</li>
+      <li>Content creators are highly encouraged</li>
+    </ul>
+    Head to Discord to apply.
+  </div>
+
+  <!-- STAFF -->
+  <div class="card">
+    <div class="title">Staff & Support</div>
+    <ul>
+      <li>24/7 Discord ticket support</li>
+      <li>Staff applications are open</li>
+      <li>Recruiting: Reviewers, Partnership Managers, Trainees</li>
+    </ul>
+  </div>
+
+  <!-- JOIN -->
+  <div class="card">
+    <div class="title">Join the Community</div>
+    Join our growing Discord community and become part of SpellBound today.
+  </div>
+
+  <!-- PROMO VIDEO -->
   <div class="card">
     <div class="title">Promo Video</div>
     <iframe src="https://www.youtube.com/embed/9drXl4Mcp9M" allowfullscreen></iframe>
@@ -219,7 +240,6 @@ function animate(){
     ctx.beginPath();
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     ctx.fill();
-
     p.x+=p.dx;
     p.y+=p.dy;
 
